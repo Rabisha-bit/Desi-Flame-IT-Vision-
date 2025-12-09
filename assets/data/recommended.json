@@ -1,0 +1,87 @@
+{
+  "recommended": [
+     {
+      "id": 1,
+      "name": "Special Halwa Puri",
+      "description": "Traditional breakfast",
+      "category": "breakfast",
+      "image": "./assets/images/dishes/HalwaPuri.jpg",
+      "price": 280,
+      "rating": 4.8,
+      "tags": ["breakfast", "veg", "desi"],
+      "nutrition": "Calories: 400, Protein: 8g, Carbs: 60g, Fat: 15g",
+      "not_good_for": [ "High Cholesterol"],
+      "joke": "Halwa puri khate hi Sunday ka mood full on ho jata hai! 😋"
+    },
+     {
+    "id": 11,
+    "name": "Mutton Maghaz Masala",
+    "description": "Brain stir fried ",
+    "category": "dinner",
+    "image": "./assets/images/dishes/Mutton Maghaz Masala.jpg",
+    "price": 1999,
+    "discount_price": 1799,
+    "rating": 4.7,
+    "tags": ["mutton", "brain", "dinner"],
+    "nutrition": "Calories: 680, Protein: 28g, Carbs: 18g, Fat: 50g",
+    "not_good_for": ["Cholesterol Patients"],
+    "joke": "Maghaz khate hi dimag full speed pe chalne lagta hai! 🧠🔥"
+  },
+     {
+    "id": 18,
+    "name": "Mexican Wings (8 Pcs)",
+    "description": "Crispy fried wings tossed with Mexican sauce",
+    "category": "starters",
+    "image": "./assets/images/dishes/Mexican Wings.jpg",
+    "price": 999,
+    "discount_price": 899,
+    "rating": 4.7,
+    "tags": ["chicken", "wings", "starter"],
+    "nutrition": "Calories: 520, Protein: 28g, Carbs: 25g, Fat: 32g",
+    "not_good_for": ["Spice Sensitive"],
+    "joke": "Mexican wings = zubaan pe fire, dil me desire! 🔥🍗"
+  },
+   {
+    "id": 26,
+    "name": "Sangria Cooler",
+    "description": "Refreshing fruity mocktail",
+    "category": "drinks",
+    "image": "./assets/images/dishes/Sangria Cooler.jpg",
+    "price": 599,
+    "discount_price": 539,
+    "rating": 4.7,
+    "tags": ["drink", "mocktail", "refreshing"],
+    "nutrition": "Calories: 140, Protein: 1g, Carbs: 35g, Fat: 0g",
+    "not_good_for": ["Diabetes"],
+    "joke": "Sangria cooler = glass me chhupi thandak! 🍊🍷"
+  },
+   {
+      "id": 35,
+      "name": "Kheer",
+      "description": "Traditional rice pudding",
+      "category": "desserts",
+      "image": "./assets/images/dishes/Kheer.jpg",
+      "price": 150,
+      "rating": 4.8,
+      "tags": ["dessert", "sweet", "veg"],
+      "nutrition": "Calories: 250, Protein: 6g, Carbs: 40g, Fat: 8g",
+      "not_good_for": ["Diabetes"],
+      "joke": "Kheer ka bowl = dadi maa ka pyaar! 🥣"
+    },
+     {
+    "id": 15,
+    "name": "Mutton Mandi (1.5 Kg)",
+    "description": "Aromatic rice served ",
+    "category": "dinner",
+    "image": "./assets/images/dishes/Mutton Mandi.jpg",
+    "price": 5499,
+    "discount_price": 4949,
+    "rating": 4.9,
+    "tags": ["mutton", "mandi", "dinner"],
+    "nutrition": "Calories: 1200, Protein: 60g, Carbs: 100g, Fat: 70g",
+    "not_good_for": [ "High BP"],
+    "joke": "Mutton mandi ek plate nahi, poora festival hai! 🎉🍖"
+  }
+   
+  ]
+}

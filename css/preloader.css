@@ -1,0 +1,58 @@
+/* Preloader Styles for Desi-Flame Restaurant */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--matte-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.preloader-content {
+    text-align: center;
+    color: var(--white);
+}
+
+.preloader-content img {
+    width: 150px;
+    margin-bottom: 20px;
+    animation: flicker 2s infinite alternate;
+}
+
+.preloader-content h2 {
+    font-family: 'Inter', serif;
+    font-size: 45px;
+  font-weight: 800;
+   background: var(--gradient);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+    animation: fadeInUp 1s ease;
+}
+
+.preloader-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--white);
+    animation: fadeInUp 1s ease 0.3s;
+    animation-fill-mode: both;
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        filter: brightness(1);
+    }
+    20%, 24%, 55% {
+        filter: brightness(1.5);
+    }
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}

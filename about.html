@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ABOUT US | Desi-Flame Restaurant</title>
+    <link
+      rel="shortcut icon"
+      href="assets/images/logo/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/preloader.css" />
+    <link rel="stylesheet" href="css/about.css" />
+  </head>
+<body>
+   <div id="preloader">
+      <div class="preloader-content">
+        <img src="assets/images/icons/Firewood.gif" alt="Preloader" />
+        <h2>Desi-Flame</h2>
+        <p>Authentic Flavors Loading...</p>
+      </div>
+    </div>
+
+  <!-- NAVBAR -->
+    <nav class="nav-container">
+      <div class="container-fluid" id="navbar">
+        <div class="logo p-4">
+          <a href="index.html">
+            <img
+              src="./assets//images/logo/logo.png"
+              alt="logo"
+              height="30px"
+              width="30px"
+            />
+          </a>
+          <a href="index.html">
+            <p>DesiFlame</p>
+          </a>
+        </div>
+        <div class="navtabs">
+          <div class="li-nks d-flex gap-4">
+            <a href="index.html">Home</a>
+            <a href="/menu.html">Menu</a>
+            <a href="index.html#highlights">Food Categories</a>
+            <a href="index.html#recommended">Chef Recommendations</a>
+            <a href="index.html#featured">Featured Dishes</a>
+            <a href="/about.html">About Us</a>
+            <a href="index.html#reservation">Reservation</a>
+          </div>
+        </div>
+        <div class="nav-icons">
+          <!-- Navbar User Icon -->
+<!-- 
+          <a href="javascript:void(0)" id="userIcon" class="me-1">
+            <img
+              src="./assets/images/icons/user.png"
+              alt="User"
+              style="cursor: pointer; width: 28px"
+            />
+          </a> -->
+          <a href="cart.html" class="me-3 cart-link position-relative">
+            <img src="./assets/images/icons/basket.png" alt="Cart" />
+            <span
+              id="cart-count"
+              class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+            >
+              0
+            </span>
+          </a>
+        </div>
+        <div class="hamburger-menu">
+          <img
+            src="assets/images/icons/menu.png"
+            onclick="togglesidebar()"
+            class="pointer"
+            alt="menu"
+          />
+        </div>
+      </div>
+      <div class="side-bar" id="side-bar">
+        <div class="sidebar-head">
+          <div class="close-button">
+            <img
+              src="assets/images/icons/cross.png"
+              onclick="togglesidebar()"
+              class="pointer"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="sidebar-links">
+          <a href="index.html">Home</a>
+          <a href="/menu.html">Our Menu</a>
+          <a href="index.html#highlights">Food Categores</a>
+          <a href="index.html#recommended">Chef Recommendations</a>
+          <a href="index.html#featured">Featured Dishes</a>
+          <a href="/about.html">About Us</a>
+          <a href="index.html#testimonials">Testimonials</a>
+        </div>
+      </div>
+    </nav>
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="content">
+      <h1>About Us</h1>
+      <p>Discover the story behind our flavors</p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="section container">
+    <div class="story-section">
+      <div class="story-image">
+        <img src="assets/images/slider-1.jpg" alt="Our Story">
+      </div>
+      <div class="story-content">
+        <h2>Our Journey</h2>
+        <p>Rooted in the rich culinary traditions of Pakistan, our restaurant was founded with a passion to bring authentic flavors to the modern table. We believe food is not just about taste, but a journey of culture, memories, and togetherness.</p>
+        <p>From the sizzling streets of Lahore to the soulful kitchens of Karachi, every dish we serve carries the warmth of home and the pride of tradition</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section container">
+    <h2 class="text-center">Our Philosophy</h2>
+    <div class="values">
+      <div class="value-card">
+        <i class="fas fa-utensils"></i>
+        <h4>Authenticity</h4>
+        <p>True Pakistani flavors, crafted with care and heritage.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-leaf"></i>
+        <h4>Quality</h4>
+        <p>We use the freshest ingredients sourced daily.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-smile"></i>
+        <h4>Hospitality</h4>
+        <p>Warm welcomes and heartfelt service with every meal.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-lightbulb"></i>
+        <h4>Innovation</h4>
+        <p>Blending tradition with modern culinary creativity.</p>
+      </div>
+    </div>
+  </section>
+
+   <!-- Chef Section -->
+    <section class="chef-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Left: Chef Image -->
+          <div class="col-md-6 chef-image text-center">
+            <img
+              src="assets/images/ChefAhmed.png"
+              alt="Master Chef"
+              class="img-fluid rounded"
+            />
+          </div>
+
+          <!-- Right: Chef Story -->
+          <div class="col-md-6 chef-content mt-5">
+            <h2>Master Chef Ahmed</h2>
+            <p>
+              With over 20 years of culinary experience, Chef Ahmed has
+              perfected the art of combining traditional Pakistani flavors with
+              modern cooking techniques. His philosophy revolves around using
+              fresh, locally sourced ingredients to craft meals that not only
+              satisfy hunger but also create unforgettable dining experiences.
+            </p>
+            <p class="chef-philosophy ms-1 mt-4">
+              "Cooking is not just about taste, it’s about crafting memories
+              through flavors. Every spice, every ingredient carries a story,
+              and when brought together with passion, they create experiences
+              that stay with people long after the meal is over. For me, food is
+              not only nourishment but an emotional connection — a way to
+              celebrate culture, tradition, and togetherness."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Testimonials -->
+  <section class="section container testimonials">
+    <h2 class="text-center">What Our Guests Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>“Best Pakistani food I’ve ever had outside of Pakistan! Truly authentic and full of flavors.”</p>
+        <div class="author">— Ali Khan</div>
+      </div>
+      <div class="testimonial">
+        <p>“Their biryani reminded me of Karachi. Every bite felt like home.”</p>
+        <div class="author">— Ayesha Malik</div>
+      </div>
+      <div class="testimonial">
+        <p>“Chef Ahmed’s creations are magical. Tradition with a modern twist. Highly recommended!”</p>
+        <div class="author">— Bilal Sheikh</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Ready to experience authentic Pakistani cuisine?</h2>
+    <a href="menu.html" class="btn">Explore Menu</a>
+  </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-logo">
+              <h3>DesiFlame</h3>
+            </div>
+            <p>
+              Experience the authentic taste of traditional flame-grilled
+              cuisine.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="footer-hours">
+              <h4>Opening Hours</h4>
+              <ul>
+                <li><span>Monday - Thursday:</span> 11:00 AM - 10:00 PM</li>
+                <li><span>Friday - Saturday:</span> 11:00 AM - 11:00 PM</li>
+                <li><span>Sunday:</span> 12:00 PM - 9:00 PM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2023 Desi-Flame Restaurant. All Rights Reserved. | Designed
+            by Rabisha Nadeem
+          </p>
+        </div>
+      </div>
+    </footer>
+<script src="js/main.js"></script>
+</body>
+</html>

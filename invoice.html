@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #101c1c;
+      color: #fff;
+      padding: 40px;
+    }
+    .invoice-container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255,255,255,0.03);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(31,38,135,0.07);
+    }
+    h2 {
+      color: var(--gold);
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: var(--flame-orange);
+      color: #fff;
+    }
+    .summary {
+      margin-top: 20px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <h2>Invoice</h2>
+    <table id="invoice-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="summary">
+      <p>Subtotal: <span id="subtotal">Rs.0</span></p>
+      <p>Discount: <span id="discount">(Rs.0)</span></p>
+      <p>Tax (15%): <span id="tax">Rs.0</span></p>
+      <p>Delivery: <span id="delivery">Rs.200</span></p>
+      <h3>Grand Total: <span id="grand-total">Rs.0</span></h3>
+    </div>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("invoiceCart")) || [];
+
+    function renderInvoice() {
+      const tbody = document.querySelector("#invoice-table tbody");
+      tbody.innerHTML = "";
+
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const price = item.discount_price || item.price;
+        const total = price * item.qty;
+        subtotal += total;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.qty}</td>
+          <td>Rs.${price}</td>
+          <td>Rs.${total}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      let discount = subtotal > 1000 ? 0.1 * subtotal : 0;
+      let tax = 0.15 * (subtotal - discount);
+      let delivery = 200;
+      let grandTotal = subtotal - discount + tax + delivery;
+
+      document.getElementById("subtotal").textContent = `Rs.${subtotal.toFixed(2)}`;
+      document.getElementById("discount").textContent = `(Rs.${discount.toFixed(2)})`;
+      document.getElementById("tax").textContent = `Rs.${tax.toFixed(2)}`;
+      document.getElementById("delivery").textContent = `Rs.${delivery}`;
+      document.getElementById("grand-total").textContent = `Rs.${grandTotal.toFixed(2)}`;
+    }
+
+    renderInvoice();
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

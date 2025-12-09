@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME | Desi-Flame Restaurant</title>
+    <link
+      rel="shortcut icon"
+      href="assets/images/logo/favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/preloader.css" />
+    <link rel="stylesheet" href="./css/aiwaiter.css" />
+    <link rel="stylesheet" href="./css/universeIO.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <img src="assets/images/icons/Firewood.gif" alt="Preloader" />
+        <h2>Desi-Flame</h2>
+        <p>Authentic Flavors Loading...</p>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="nav-container">
+      <div class="container-fluid" id="navbar">
+        <div class="logo p-4">
+          <a href="index.html">
+            <img
+              src="./assets//images/logo/logo.png"
+              alt="logo"
+              height="30px"
+              width="30px"
+            />
+          </a>
+          <a href="index.html">
+            <p>DesiFlame</p>
+          </a>
+        </div>
+        <div class="navtabs">
+          <div class="li-nks d-flex gap-4">
+            <a href="index.html">Home</a>
+            <a href="/menu.html">Menu</a>
+            <a href="index.html#highlights">Food Categories</a>
+            <a href="index.html#recommended">Chef Recommendations</a>
+            <a href="index.html#featured">Featured Dishes</a>
+            <a href="/about.html">About Us</a>
+            <a href="index.html#reservation">Reservation</a>
+          </div>
+        </div>
+        <div class="nav-icons">
+          <!-- Navbar User Icon -->
+
+          <a href="javascript:void(0)" id="userIcon" class="me-1">
+            <img
+              src="./assets/images/icons/user.png"
+              alt="User"
+              style="cursor: pointer; width: 28px"
+            />
+          </a>
+          <a href="cart.html" class="me-3 cart-link position-relative">
+            <img src="./assets/images/icons/basket.png" alt="Cart" />
+            <span
+              id="cart-count"
+              class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+            >
+              0
+            </span>
+          </a>
+        </div>
+        <div class="hamburger-menu">
+          <img
+            src="assets/images/icons/menu.png"
+            onclick="togglesidebar()"
+            class="pointer"
+            alt="menu"
+          />
+        </div>
+      </div>
+      <div class="side-bar" id="side-bar">
+        <div class="sidebar-head">
+          <div class="close-button">
+            <img
+              src="assets/images/icons/cross.png"
+              onclick="togglesidebar()"
+              class="pointer"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="sidebar-links">
+          <a href="index.html">Home</a>
+          <a href="/menu.html">Our Menu</a>
+          <a href="index.html#highlights">Food Categores</a>
+          <a href="index.html#recommended">Chef Recommendations</a>
+          <a href="index.html#featured">Featured Dishes</a>
+          <a href="/about.html">About Us</a>
+          <a href="index.html#testimonials">Testimonials</a>
+        </div>
+      </div>
+    </nav>
+    <!-- User Dropdown -->
+    <div id="userDropdown" class="user-dropdown" style="display: none">
+      <div class="user-info">
+        <p id="userName" class="my-3"></p>
+        <p id="userEmail" class="my-3"></p>
+        <p id="userContact" class="my-3"></p>
+
+        <!-- City + Area ek line me -->
+        <div class="user-location" class="my-2">
+          <span id="userCity"></span>,
+          <span id="userArea"></span>
+        </div>
+
+        <!-- Address last me -->
+        <p id="userAddress" class="my-3"></p>
+      </div>
+      <button id="dropdownLogout" class="btn">Logout</button>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+      <div class="login-modal-content">
+        
+        <h2>LogIn Your Account</h2>
+        
+         <input
+           type="email"
+           id="loginEmail"
+           placeholder="Enter your email"
+           required
+         />
+       
+       
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+            required
+          />
+     
+        <button id="loginBtn" class="btn">Log In</button>
+        <p>Don't have an account? <a href="#" id="openSignup">Sign Up</a></p>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="login-modal">
+      <div class="login-modal-content signup-box">
+        <span class="signup-modal-close">&times;</span>
+        <h2>Create Your Account</h2>
+
+        <div class="form-group">
+          <input
+            type="text"
+            id="signupFirstName"
+            placeholder="First Name"
+            required
+          />
+          <small class="error-msg" id="errorContact"></small>
+          <input
+            type="text"
+            id="signupLastName"
+            placeholder="Last Name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            id="signupContact"
+            placeholder="Contact Number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            id="signupAddress"
+            placeholder="Address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="signupCity" placeholder="City" required />
+          <input type="text" id="signupArea" placeholder="Area" required />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="Email Address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <button id="signupBtn" class="btn">Sign Up</button>
+        <p class="switch-text">
+          Already have an account? <a href="#" id="openLogin">Login</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- AI Waiter Button in Navbar -->
+    <button id="aiWaiterBtn" class="ai-waiter-btn" title="Ask the AI Waiter 🤖">
+      🤖
+    </button>
+    <!-- AI Waiter Modal -->
+    <div id="aiWaiterModal" class="ai-modal">
+      <div class="ai-modal-content">
+        <div class="ai-modal-header">
+          <div class="header-info">
+            <h5>AI Waiter 🍽️</h5>
+            <small>Online</small>
+          </div>
+          <span class="ai-modal-close">&times;</span>
+        </div>
+
+        <div class="ai-chat-body">
+          <div id="aiChatMessages" class="ai-chat-messages">
+            <!-- Example AI Message (Left) -->
+            <div class="ai-msg">
+              Hello! I’m your AI Waiter 🤖🍽️ How can I assist you today?
+            </div>
+
+            <!-- Example User Message (Right) -->
+            <div class="user-msg">Can you suggest me a pasta dish?</div>
+
+            <!-- Another AI Message -->
+            <div class="ai-msg">
+              Sure! Our creamy Alfredo pasta pairs perfectly with garlic bread
+              🥖✨
+            </div>
+
+            <!-- Another User Message -->
+            <div class="user-msg">Sounds great! Add it to my order.</div>
+          </div>
+        </div>
+
+        <div class="ai-modal-footer">
+          <input
+            type="text"
+            id="aiChatInput"
+            placeholder="Ask me about dishes, nutrition, or pairings..."
+          />
+          <button id="aiSendBtn" aria-label="Send Message">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1: Tradition -->
+          <div
+            class="swiper-slide"
+            style="background-image: url('assets/images/slider-1.jpg')"
+          >
+            <div class="slide-content">
+              <h1>Traditional Flavors</h1>
+              <p>
+                Experience the authentic taste of traditional recipes passed
+                down through generations
+              </p>
+              <!-- From Uiverse.io by nikk7007 -->
+              <button class="btn">
+                <a href="/menu.html">Explore Menu</a>
+              </button>
+            </div>
+          </div>
+          <!-- Slide 2: Grill -->
+          <div
+            class="swiper-slide"
+            style="background-image: url('assets/images/slider-2.jpg')"
+          >
+            <div class="slide-content">
+              <h1>Flame Grilled Perfection</h1>
+              <p>
+                Our signature flame-grilled dishes bring out the best flavors in
+                every bite
+              </p>
+               <!-- From Uiverse.io by nikk7007 -->
+              <button class="btn">
+                <a href="/index.html#featured">Featured Dishes</a>
+              </button>
+            </div>
+          </div>
+          <!-- Slide 3: Authentic -->
+          <div
+            class="swiper-slide"
+            style="background-image: url('assets/images/slider-3.jpg')"
+          >
+            <div class="slide-content">
+              <h1>Authentic Experience</h1>
+              <p>
+                Immerse yourself in a dining experience that celebrates our rich
+                culinary heritage
+              </p>
+             <button class="btn">
+                <a href="/index.html#reservation">Reserved A Table</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+
+    <!-- --- Highlights Section --- -->
+    <section class="highlights-section my-5" id="highlights">
+      <div class="container-fluid text-center">
+        <h2 class="menu-title my-5">Explore Our Food Categories</h2>
+        <div class="row mt-4 justify-content-center">
+          <!-- Category 1: Breakfast -->
+          <a
+            href="explore.html?category=breakfast"
+            class="col-lg-2 col-md-2 col-sm-6 mb-4"
+          >
+            <div class="category-glass-card">
+              <img
+                src="assets/images/dishes/HalwaPuri.jpg"
+                alt="Breakfast"
+                class="card-img"
+              />
+              <h5>Breakfast</h5>
+            </div>
+          </a>
+
+          <!-- Category 2: Lunch -->
+          <a
+            href="explore.html?category=lunch"
+            class="col-lg-2 col-md-2 col-sm-6 mb-4"
+          >
+            <div class="category-glass-card">
+              <img
+                src="assets/images/dishes/Lunch.jpg"
+                alt="Lunch"
+                class="card-img"
+              />
+              <h5>Lunch</h5>
+            </div>
+          </a>
+
+          <!-- Category 3: Dinner -->
+          <a
+            href="explore.html?category=dinner"
+            class="col-lg-2 col-md-2 col-sm-6 mb-4"
+          >
+            <div class="category-glass-card">
+              <img
+                src="assets/images/dishes/Dinner.jpg"
+                alt="Dinner"
+                class="card-img"
+              />
+              <h5>Dinner</h5>
+            </div>
+          </a>
+
+          <!-- Category 4: Starter-->
+          <a
+            href="explore.html?category=starters"
+            class="col-lg-2 col-md-2 col-sm-6 mb-4"
+          >
+            <div class="category-glass-card">
+              <img
+                src="assets/images/dishes/Starter.webp"
+                alt="Starter"
+                class="card-img"
+              />
+              <h5>Starter</h5>
+            </div>
+          </a>
+
+          <!-- Category 5: Drinks -->
+          <a
+            href="explore.html?category=drinks"
+            class="col-lg-2 col-md-2 col-sm-6 mb-4"
+          >
+            <div class="category-glass-card">
+              <img
+                src="assets/images/dishes/drinks.jpg"
+                alt="Drinks"
+                class="card-img"
+              />
+              <h5>Drinks</h5>
+            </div>
+          </a>
+
+          <!-- Category 6: Desserts -->
+          <a
+            href="explore.html?category=desserts"
+            class="col-lg-2 col-md-2 col-sm-6 mb-4"
+          >
+            <div class="category-glass-card">
+              <img
+                src="assets/images/dishes/Desert.jpg"
+                alt="Desserts"
+                class="card-img"
+              />
+              <h5>Desserts</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Dishes Section -->
+    <section id="featured" class="featured-section my-5">
+      <div class="container mt-2">
+        <div class="section-header text-center">
+          <h2>Featured Dishes</h2>
+          <p>Our most popular and signature creations</p>
+        </div>
+        <!-- Countdown Timer -->
+        <!-- Timer Row -->
+        <div class="row mb-4">
+          <div class="col text-center">
+            <div class="deal-timer">
+              <h3>Countdown To Our Next Flavor Adventure</h3>
+              <div id="countdown" class="countdown">
+                <div><span id="days">00</span><small>Days</small></div>
+                <div><span id="hours">00</span><small>Hours</small></div>
+                <div><span id="minutes">00</span><small>Minutes</small></div>
+                <div><span id="seconds">00</span><small>Seconds</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Featured Dish 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="featured-dish">
+              <div class="dish-image">
+                <img
+                  src="assets/images/ButterChicken.avif"
+                  alt="Butter Chicken"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="dish-info">
+                <h3>Butter Chicken</h3>
+                <p>Tender chicken in a rich, creamy tomato sauce</p>
+                <span class="price">Rs.699.99</span>
+              </div>
+            </div>
+          </div>
+          <!-- Featured Dish 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="featured-dish">
+              <div class="dish-image">
+                <img
+                  src="assets/images/TandooriPlatter.jpg"
+                  alt="Tandoori Platter"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="dish-info">
+                <h3>Tandoori Platter</h3>
+                <p>Assortment of flame-grilled meats and vegetables</p>
+                <span class="price">Rs.899.99</span>
+              </div>
+            </div>
+          </div>
+          <!-- Featured Dish 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="featured-dish">
+              <div class="dish-image">
+                <img
+                  src="assets/images/BiryaniSpecial.jpg"
+                  alt="Biryani Special"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="dish-info">
+                <h3>Biryani Special</h3>
+                <p>Fragrant rice cooked with aromatic spices and meat</p>
+                <span class="price">Rs.599.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Chef Section -->
+    <section class="chef-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Left: Chef Image -->
+          <div class="col-md-6 chef-image text-center">
+            <img
+              src="assets/images/ChefAhmed.png"
+              alt="Master Chef"
+              class="img-fluid rounded"
+            />
+          </div>
+
+          <!-- Right: Chef Story -->
+          <div class="col-md-6 chef-content mt-5">
+            <h2>Master Chef Ahmed</h2>
+            <p>
+              With over 20 years of culinary experience, Chef Ahmed has
+              perfected the art of combining traditional Pakistani flavors with
+              modern cooking techniques. His philosophy revolves around using
+              fresh, locally sourced ingredients to craft meals that not only
+              satisfy hunger but also create unforgettable dining experiences.
+            </p>
+            <p class="chef-philosophy ms-1 mt-4">
+              "Cooking is not just about taste, it’s about crafting memories
+              through flavors. Every spice, every ingredient carries a story,
+              and when brought together with passion, they create experiences
+              that stay with people long after the meal is over. For me, food is
+              not only nourishment but an emotional connection — a way to
+              celebrate culture, tradition, and togetherness."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chef Recommended Dishes Section -->
+    <section id="recommended" class="recommended-section py-5 mt-5">
+      <div class="container-fluid">
+        <div class="section-header text-center mb-5">
+          <h2>Chef's Recommendations</h2>
+          <p>Specially curated dishes by our Master Chef</p>
+        </div>
+        <div class="row">
+          <!-- JS yahan dynamic cards inject karega -->
+        </div>
+      </div>
+    </section>
+    <!-- Custom Cart Alert -->
+    <div id="cart-alert" class="cart-alert">
+      <span id="cart-alert-text"></span>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section py-5">
+      <div class="container">
+        <div class="section-header text-center mb-5">
+          <h2>What Our Guests Say</h2>
+          <p>Authentic voices from our valued food lovers</p>
+        </div>
+
+        <div class="row">
+          <!-- Testimonial 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p>
+                  "The flavors reminded me of my dadi’s kitchen in Lahore — pure
+                  nostalgia with a modern twist. Absolutely delightful
+                  experience."
+                </p>
+              </div>
+              <div class="testimonial-author d-flex align-items-center">
+                <img src="/assets/images/dishes/guest1.jpg" alt="Author" />
+                <div>
+                  <h5>Ali Raza</h5>
+                  <span>Lahore</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p>
+                  "Finally a place in Karachi where tradition meets creativity.
+                  Every dish feels like a celebration of Pakistani culture."
+                </p>
+              </div>
+              <div class="testimonial-author d-flex align-items-center">
+                <img src="/assets/images/dishes/guest2.jpg" alt="Author" />
+                <div>
+                  <h5>Sana Fatima</h5>
+                  <span>Karachi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p>
+                  "Being from Islamabad, I’ve tried many restaurants, but this
+                  place captures the heart of Pakistani spices like no other."
+                </p>
+              </div>
+              <div class="testimonial-author d-flex align-items-center">
+                <img src="/assets/images/dishes/guest3.jpg" alt="Author" />
+                <div>
+                  <h5>Hamza Khan</h5>
+                  <span>Islamabad</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---Reservation Section--- -->
+    <section class="reservation-section" id="reservation">
+      <div class="reservation-container">
+        <div class="reservation-img reservation-img-left">
+          <img src="./assets/images/slider-1.jpg" alt="Restaurant Interior" />
+        </div>
+        <div class="reservation-content">
+          <div class="reservation-heading">
+            <div class="reservation-subtitle">ONLINE RESERVATION</div>
+            <h2 class="reservation-title">Book A Table</h2>
+            <div class="reservation-desc">
+              Booking request
+              <span class="reservation-phone">+88-123-123456</span> or fill out
+              the order form
+            </div>
+          </div>
+          <form id="reservationForm" class="reservation-form">
+            <div class="reservation-row">
+              <input type="text" id="name" placeholder="Your Name" required />
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Phone Number"
+                required
+              />
+            </div>
+            <div class="reservation-row">
+              <select id="persons" required>
+                <option value="" disabled selected>1 Person</option>
+                <option>2 Person</option>
+                <option>3 Person</option>
+                <option>4 Person</option>
+                <option>5 Person</option>
+                <option>6 Person</option>
+              </select>
+              <input type="date" id="date" required />
+              <input type="time" id="time" required />
+            </div>
+            <textarea id="message" placeholder="Message" style="resize: none;" rows="2"></textarea>
+            <button type="submit" class="btn">
+              Book A Table
+            </button>
+          </form>
+        </div>
+        <div class="reservation-img reservation-img-right">
+          <img src="./assets/images/slider-2.jpg" alt="Restaurant Dish" />
+        </div>
+      </div>
+    </section>
+    <!-- Confirmation Popup -->
+    <div id="confirmationPopup" class="popup">
+      <div class="popup-content">
+        <h3>Confirm Your Reservation</h3>
+        <p id="popupDetails"></p>
+        <button id="confirmBtn">Confirm</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Slip (Hidden Initially) -->
+    <div id="bookingSlip" class="slip">
+      <h2>Booking Slip</h2>
+      <p id="slipDetails"></p>
+      <button onclick="window.print()">Print Slip</button>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-logo">
+              <h3>DesiFlame</h3>
+            </div>
+            <p>
+              Experience the authentic taste of traditional flame-grilled
+              cuisine.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="footer-hours">
+              <h4>Opening Hours</h4>
+              <ul>
+                <li><span>Monday - Thursday:</span> 11:00 AM - 10:00 PM</li>
+                <li><span>Friday - Saturday:</span> 11:00 AM - 11:00 PM</li>
+                <li><span>Sunday:</span> 12:00 PM - 9:00 PM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2023 Desi-Flame Restaurant. All Rights Reserved. | Designed
+            by Rabisha Nadeem
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Invoice Modal -->
+    <div
+      class="modal fade"
+      id="invoiceModal"
+      tabindex="-1"
+      aria-labelledby="invoiceModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="invoiceModalLabel">Invoice</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- User Info -->
+            <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+            <p><strong>Name:</strong> <span id="user-name"></span></p>
+            <p><strong>Phone:</strong> <span id="user-phone"></span></p>
+            <p><strong>Address:</strong> <span id="user-address"></span></p>
+            <p><strong>Email:</strong> <span id="user-email"></span></p>
+
+            <hr />
+
+            <!-- Cart Items -->
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Dish</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="invoice-items"></tbody>
+            </table>
+
+            <!-- Totals -->
+            <div class="d-flex justify-content-between">
+              <span>Subtotal:</span>
+              <span id="invoice-subtotal">0</span>
+            </div>
+            <div class="d-flex justify-content-between text-success">
+              <span>Discount:</span>
+              <span id="invoice-discount">0</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Tax (15%):</span>
+              <span id="invoice-tax">0</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Delivery:</span>
+              <span id="invoice-delivery">200</span>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between fw-bold">
+              <span>Grand Total:</span>
+              <span id="invoice-grandtotal">0</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="download-pdf" class="btn btn-primary">
+              Download PDF
+            </button>
+            <button id="print-invoice" class="btn btn-secondary">Print</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="js/chef-recommend.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/aiwater.js"></script>
+  </body>
+</html>

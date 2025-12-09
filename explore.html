@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DISHES | Desi-Flame Restaurant</title>
+    <link
+      rel="shortcut icon"
+      href="assets/images/logo/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/preloader.css" />
+    <link rel="stylesheet" href="css/aiwaiter.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <img src="assets/images/icons/Firewood.gif" alt="Preloader" />
+        <h2>Desi-Flame</h2>
+        <p>Authentic Flavors Loading...</p>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="nav-container">
+      <div class="container-fluid" id="navbar">
+        <div class="logo p-4">
+          <a href="index.html">
+            <img
+              src="./assets//images/logo/logo.png"
+              alt="logo"
+              height="30px"
+              width="30px"
+            />
+          </a>
+          <a href="index.html">
+            <p>DesiFlame</p>
+          </a>
+        </div>
+        <div class="navtabs">
+          <div class="li-nks d-flex gap-4">
+            <a href="index.html">Home</a>
+            <a href="/menu.html">Menu</a>
+            <a href="index.html#highlights">Food Categories</a>
+            <a href="index.html#recommended">Chef Recommendations</a>
+            <a href="index.html#featured">Featured Dishes</a>
+            <a href="/about.html">About Us</a>
+            <a href="index.html#reservation">Reservation</a>
+          </div>
+        </div>
+        <div class="nav-icons">
+          <!-- Navbar User Icon -->
+          <!-- 
+          <a href="javascript:void(0)" id="userIcon" class="me-1">
+            <img
+              src="./assets/images/icons/user.png"
+              alt="User"
+              style="cursor: pointer; width: 28px"
+            />
+          </a> -->
+          <a href="cart.html" class="me-3 cart-link position-relative">
+            <img src="./assets/images/icons/basket.png" alt="Cart" />
+            <span
+              id="cart-count"
+              class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+            >
+              0
+            </span>
+          </a>
+        </div>
+        <div class="hamburger-menu">
+          <img
+            src="assets/images/icons/menu.png"
+            onclick="togglesidebar()"
+            class="pointer"
+            alt="menu"
+          />
+        </div>
+      </div>
+      <div class="side-bar" id="side-bar">
+        <div class="sidebar-head">
+          <div class="close-button">
+            <img
+              src="assets/images/icons/cross.png"
+              onclick="togglesidebar()"
+              class="pointer"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="sidebar-links">
+          <a href="index.html">Home</a>
+          <a href="/menu.html">Our Menu</a>
+          <a href="index.html#highlights">Food Categores</a>
+          <a href="index.html#recommended">Chef Recommendations</a>
+          <a href="index.html#featured">Featured Dishes</a>
+          <a href="/about.html">About Us</a>
+          <a href="index.html#testimonials">Testimonials</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- AI Waiter Button in Navbar -->
+    <button id="aiWaiterBtn" class="ai-waiter-btn" title="Ask the AI Waiter 🤖">
+      🤖
+    </button>
+    <!-- AI Waiter Modal -->
+    <div id="aiWaiterModal" class="ai-modal">
+      <div class="ai-modal-content">
+        <div class="ai-modal-header">
+          <div class="header-info">
+            <h5>AI Waiter 🍽️</h5>
+            <small>Online</small>
+          </div>
+          <span class="ai-modal-close">&times;</span>
+        </div>
+
+        <div class="ai-chat-body">
+          <div id="aiChatMessages" class="ai-chat-messages">
+            <!-- Example AI Message (Left) -->
+            <div class="ai-msg">
+              Hello! I’m your AI Waiter 🤖🍽️ How can I assist you today?
+            </div>
+
+            <!-- Example User Message (Right) -->
+            <div class="user-msg">Can you suggest me a pasta dish?</div>
+
+            <!-- Another AI Message -->
+            <div class="ai-msg">
+              Sure! Our creamy Alfredo pasta pairs perfectly with garlic bread
+              🥖✨
+            </div>
+
+            <!-- Another User Message -->
+            <div class="user-msg">Sounds great! Add it to my order.</div>
+          </div>
+        </div>
+
+        <div class="ai-modal-footer">
+          <input
+            type="text"
+            id="aiChatInput"
+            placeholder="Ask me about dishes, nutrition, or pairings..."
+          />
+          <button id="aiSendBtn" aria-label="Send Message">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section id="explore" class="py-5">
+      <div class="container-fluid my-2">
+        <h2 id="explore-title" class="text-center mb-4"></h2>
+        <div id="explore-dishes" class="row"></div>
+      </div>
+    </section>
+    <!-- Custom Cart Alert -->
+    <div id="cart-alert" class="cart-alert">
+      <span id="cart-alert-text"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-logo">
+              <h3>DesiFlame</h3>
+            </div>
+            <p>
+              Experience the authentic taste of traditional flame-grilled
+              cuisine.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="footer-hours">
+              <h4>Opening Hours</h4>
+              <ul>
+                <li><span>Monday - Thursday:</span> 11:00 AM - 10:00 PM</li>
+                <li><span>Friday - Saturday:</span> 11:00 AM - 11:00 PM</li>
+                <li><span>Sunday:</span> 12:00 PM - 9:00 PM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2023 Desi-Flame Restaurant. All Rights Reserved. | Designed
+            by Rabisha Nadeem
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Get category from URL query
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category");
+
+      // Map titles for each category
+      const categoryTitles = {
+        breakfast: "Breakfast Delights",
+        lunch: "Lunch Specials",
+        dinner: "Dinner Favorites",
+        starters: "Starters & Appetizers",
+        drinks: "Drinks   ",
+        desserts: "Desserts & Sweets",
+      };
+
+      // Set heading
+      document.getElementById("explore-title").textContent =
+        categoryTitles[category] || "Our Dishes";
+
+      // Fetch JSON and filter
+      fetch("./assets/data/dishes.json")
+        .then((res) => res.json())
+        .then((data) => {
+          window.allDishes = data.dishes; // 🔥 global access for cart.js
+          const container = document.getElementById("explore-dishes");
+          const filtered = data.dishes.filter((d) => d.category === category);
+
+          if (filtered.length === 0) {
+            container.innerHTML = `<p class="text-center">No dishes found for this category.</p>`;
+            return;
+          }
+
+          filtered.forEach((dish, index) => {
+            const col = document.createElement("div");
+            col.classList.add("col-lg-4", "col-md-6", "col-sm-6", "mb-4");
+
+            col.innerHTML = `
+    <div class="explore-card ${dish.category}-card">
+  <div class="dish-image">
+    <img src="${dish.image}" alt="${dish.name}" class="img-fluid rounded">
+  </div> 
+
+  <div class="dish-info">
+    <h5 class="dish-title">${dish.name}</h5>
+    <p class="desc">${dish.description}</p>
+
+    <!-- Price + Rating -->
+    <div class="meta my-3">
+      <span class="price">Rs.${dish.price}</span>
+      <span class="rating">⭐ ${dish.rating}</span>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags mb-2">
+      ${dish.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+    </div>
+
+    <!-- Health Alert -->
+    ${
+      dish.not_good_for && dish.not_good_for.length > 0
+        ? `<div class="health-alert alert-warning py-1 px-2 mt-2">
+            ⚠️ Not good for: ${dish.not_good_for.join(", ")}
+           </div>`
+        : ""
+    }
+
+   <!-- Quantity + Add to Cart -->
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <div class="qty-btn-main">
+      <button class="qty-btn decrease" data-id="${dish.id}">-</button>
+         <span class="qty-value mx-2" id="qty-${dish.id}">1</span>
+         <button class="qty-btn increase" data-id="${dish.id}">+</button>
+    </div>
+        <button class="btn  btn-primary ms-3 add-to-cart" data-id="${dish.id}">
+          <img src="./assets/images/icons/basket2.png" alt="Cart" />
+        </button>
+      </div>
+  </div>
+</div>
+    `;
+
+            container.appendChild(col);
+          });
+
+          // Add event listeners for all joke buttons
+          document.querySelectorAll(".toggle-joke").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const targetId = btn.getAttribute("data-target");
+              const jokeEl = document.getElementById(targetId);
+
+              if (jokeEl.classList.contains("d-none")) {
+                jokeEl.classList.remove("d-none");
+                btn.textContent = "🙈 Hide Joke";
+              } else {
+                jokeEl.classList.add("d-none");
+                btn.textContent = "😂 Show Joke";
+              }
+            });
+          });
+        })
+        .catch((err) => console.error("Error loading dishes:", err));
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/aiwater.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
+</html>

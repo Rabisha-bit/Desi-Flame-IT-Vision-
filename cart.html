@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./css/universeIO.css">
+    <style>
+      :root {
+        --gold: #d4af37;
+        --flame-orange: #ff5722;
+        --dark-bg: #101c1c;
+        --light: #f9f9f9;
+      }
+
+      body {
+        background: var(--dark-bg);
+        color: var(--light);
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Cart Layout */
+      .cart-container {
+        max-width: 1200px;
+        margin: 70px auto;
+        padding: 0 15px;
+      }
+
+      /* Cards */
+      /* .cart-card,
+      .cart-summary {
+        border-radius: 20px;
+        padding: 28px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      } */
+
+      /* .cart-card:hover,
+      .cart-summary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 34px rgba(0, 0, 0, 0.55);
+      } */
+
+      /* Headings */
+      .cart-card h4,
+      .cart-summary h5 {
+        font-weight: 700;
+        color: var(--gold);
+
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+      }
+
+      /* Cart Items */
+      .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px dashed var(--gold);
+        padding: 20px 0;
+        transition: 0.25s ease;
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .cart-item .item-image img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid var(--flame-orange);
+        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.25);
+        transition: transform 0.3s;
+      }
+
+      .cart-item .item-image img:hover {
+        transform: scale(1.08);
+      }
+
+      /* Info */
+      .item-info {
+        flex-grow: 1;
+        margin-left: 20px;
+      }
+
+      .item-info h6 {
+        margin: 0;
+        font-weight: 700;
+        color: var(--gold);
+        text-transform: uppercase;
+        font-size: 1.05rem;
+        letter-spacing: 0.5px;
+      }
+
+      .item-info p {
+        font-size: 0.9rem;
+        color: #ddd;
+        margin: 5px 0;
+      }
+
+      /* Quantity + Remove */
+      .qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .qty-btn {
+        border: none;
+        background: #eee;
+        padding: 5px 10px;
+        transition: 0.25s;
+        cursor: pointer;
+      }
+      /* 
+      .qty-btn:hover {
+        transform: scale(0.15);
+      } */
+
+      .remove-btn {
+        background: none;
+        border: none;
+        margin-left: 12px;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      /* .remove-btn img {
+        width: 26px;
+        height: 26px;
+        filter: drop-shadow(0 0 3px rgba(255, 0, 0, 0.4));
+        transition: transform 0.2s ease, filter 0.2s ease;
+        pointer-events: none;
+      }
+
+      .remove-btn:hover img {
+        transform: scale(1.2) rotate(-10deg);
+        filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.7));
+      } */
+
+      /* Summary */
+      .cart-summary {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 18px;
+        padding: 25px;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45); */
+        backdrop-filter: blur(8px);
+        transition: 0.3s;
+      }
+
+      .cart-summary h5 {
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      .cart-summary p,
+      .cart-summary span {
+        font-size: 1rem;
+        color: #ccc;
+      }
+
+      .cart-summary hr {
+        border-color: var(--gold);
+      }
+
+      /* .checkout-btn {
+        background: var(--gold);
+        border: none;
+        border-radius: 14px;
+        width: 100%;
+        padding: 12px 80px;
+        margin-top: 20px;
+        font-size: 17px;
+        font-weight: bold;
+        color: var(--dark-bg);
+        transition: 0.3s;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .checkout-btn:hover {
+        opacity: 0.95;
+        transform: translateY(-2px) scale(1.02);
+      } */
+
+      /* Empty Cart */
+      #empty-cart {
+        font-size: 18px;
+        font-weight: 500;
+        color: #bbb;
+        text-align: center;
+        padding: 50px 0;
+      }
+      /* Invoice Modal Custom Styling */
+      /* Invoice Modal Styling */
+      .invoice-modal {
+        background: #101c1ca4;
+        backdrop-filter: blur(8px);
+        color: var(--light);
+        border-radius: 18px;
+        border: 1px solid var(--gold);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.85);
+      }
+
+      .invoice-modal .modal-header {
+        background: var(--flame-orange);
+        color: var(--light);
+        border-bottom: none;
+        padding: 20px;
+        position: relative;
+      }
+
+      .invoice-modal .modal-header h3 {
+        color: var(--gold);
+        font-size: 1.6rem;
+      }
+
+      .invoice-modal .modal-body {
+        padding: 25px 30px;
+      }
+
+      .invoice-modal table th {
+        background: var(--gold);
+        color: var(--dark-bg);
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 12px;
+      }
+
+      .invoice-modal table td {
+        padding: 10px;
+      }
+
+      .invoice-modal .totals {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 15px 20px;
+      }
+
+      .invoice-modal .totals p {
+        margin: 2px 0;
+        font-size: 0.95rem;
+      }
+
+      .invoice-modal .totals h4 {
+        font-size: 1.3rem;
+      }
+
+      .invoice-modal .modal-footer {
+        border-top: none;
+        background: transparent;
+        padding: 20px;
+      }
+
+      .invoice-modal .modal-footer .btn {
+        min-width: 140px;
+      }
+
+      .invoice-modal .btn {
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 8px 18px;
+        transition: 0.3s;
+      }
+
+      .invoice-modal .btn-success {
+        background: var(--gold);
+        color: var(--dark-bg);
+        border: none;
+      }
+
+      .invoice-modal .btn-success:hover {
+        background: #c19a2e;
+      }
+
+      .invoice-modal .btn-primary {
+        background: var(--flame-orange);
+        border: none;
+      }
+
+      .invoice-modal .btn-primary:hover {
+        background: #e64a19;
+      }
+      .invoice-landscape {
+        background: #101c1c9f;
+        backdrop-filter: blur(8px);
+        border: 1px solid var(--gold);
+        color: #f9f9f9;
+        border-radius: 16px;
+        padding: 10px 20px;
+      }
+      .invoice-landscape .text-gold {
+        color: #d4af37;
+      }
+      .invoice-landscape .table-dark {
+        background: transparent;
+      }
+      .invoice-landscape .totals p {
+        margin: 4px 0;
+      }
+      /* Bigger width, landscape feel */
+      #invoiceModal .modal-dialog {
+        max-width: 95vw;
+      }
+      #invoiceModal .modal-content {
+        height: auto;
+        min-height: 70vh;
+      }
+      .invoice-landscape .totals {
+        background: #0f1717; /* dark theme box */
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-top: 20px;
+      }
+
+      .invoice-landscape .totals span {
+        font-size: 14px;
+      }
+
+      .invoice-landscape .totals .fw-bold {
+        font-size: 18px;
+        letter-spacing: 0.5px;
+      }
+      /* Popup box */
+      .swal-popup {
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Title styling */
+      .swal-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--gold); /* Success green */
+        margin-bottom: 10px;
+      }
+
+      /* Confirm button */
+      .swal-confirm-btn {
+        background-color: var(--gold) !important; /* Theme green */
+        color: #fff !important;
+        border-radius: 30px !important;
+        padding: 10px 25px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        transition: 0.3s ease;
+      }
+
+      .swal-confirm-btn:hover {
+        background-color: var(--gold)!important; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+   <!-- NAVBAR -->
+    <nav class="nav-container">
+      <div class="container-fluid" id="navbar">
+        <div class="logo p-4">
+          <a href="index.html">
+            <img
+              src="./assets//images/logo/logo.png"
+              alt="logo"
+              height="30px"
+              width="30px"
+            />
+          </a>
+          <a href="index.html">
+            <p>DesiFlame</p>
+          </a>
+        </div>
+        <div class="navtabs">
+          <div class="li-nks d-flex gap-4">
+            <a href="index.html">Home</a>
+            <a href="/menu.html">Menu</a>
+            <a href="index.html#highlights">Food Categories</a>
+            <a href="index.html#recommended">Chef Recommendations</a>
+            <a href="index.html#featured">Featured Dishes</a>
+            <a href="/about.html">About Us</a>
+            <a href="index.html#reservation">Reservation</a>
+          </div>
+        </div>
+        <div class="nav-icons">
+          <!-- Navbar User Icon -->
+<!-- 
+          <a href="javascript:void(0)" id="userIcon" class="me-1">
+            <img
+              src="./assets/images/icons/user.png"
+              alt="User"
+              style="cursor: pointer; width: 28px"
+            />
+          </a> -->
+          <a href="cart.html" class="me-3 cart-link position-relative">
+            <img src="./assets/images/icons/basket.png" alt="Cart" />
+            <span
+              id="cart-count"
+              class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+            >
+              0
+            </span>
+          </a>
+        </div>
+        <div class="hamburger-menu">
+          <img
+            src="assets/images/icons/menu.png"
+            onclick="togglesidebar()"
+            class="pointer"
+            alt="menu"
+          />
+        </div>
+      </div>
+      <div class="side-bar" id="side-bar">
+        <div class="sidebar-head">
+          <div class="close-button">
+            <img
+              src="assets/images/icons/cross.png"
+              onclick="togglesidebar()"
+              class="pointer"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="sidebar-links">
+          <a href="index.html">Home</a>
+          <a href="/menu.html">Our Menu</a>
+          <a href="index.html#highlights">Food Categores</a>
+          <a href="index.html#recommended">Chef Recommendations</a>
+          <a href="index.html#featured">Featured Dishes</a>
+          <a href="/about.html">About Us</a>
+          <a href="index.html#testimonials">Testimonials</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart Page -->
+    <div class="cart-container row">
+      <!-- Cart Items -->
+      <div class="col-lg-8 mb-4">
+        <div class="cart-card">
+          <h4 class="text-center">Your Cart</h4>
+          <div id="cart-items"></div>
+          <p id="empty-cart" class="text-center my-4 d-none">
+            Your cart is empty 😢
+          </p>
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="col-lg-4">
+        <div class="cart-summary">
+          <h5>Bill Details</h5>
+          <hr />
+
+          <p class="d-flex justify-content-between">
+            <span>Sub Total</span>
+            <span id="subtotal">Rs.0</span>
+          </p>
+
+          <p class="d-flex justify-content-between text-success">
+            <span>Discount</span>
+            <span id="discount">(Rs.0)</span>
+          </p>
+
+          <p class="d-flex justify-content-between">
+            <span>Tax (15%)</span>
+            <span id="tax">Rs.0</span>
+          </p>
+
+          <p class="d-flex justify-content-between">
+            <span>Delivery Charges</span>
+            <span id="delivery">Rs.200</span>
+          </p>
+
+          <hr />
+
+          <h5 class="d-flex justify-content-between">
+            <span>Grand Total</span>
+            <span id="grand-total">Rs.0</span>
+          </h5>
+
+          <a href="" id="checkout-btn" class="btn mt-2 text-center">
+            Checkout
+            <span style="margin-left: 8px">
+              <img src="/assets/images/icons/right-arrow.png" alt="arrow" />
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+<!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-logo">
+              <h3>DesiFlame</h3>
+            </div>
+            <p>
+              Experience the authentic taste of traditional flame-grilled
+              cuisine.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="footer-hours">
+              <h4>Opening Hours</h4>
+              <ul>
+                <li><span>Monday - Thursday:</span> 11:00 AM - 10:00 PM</li>
+                <li><span>Friday - Saturday:</span> 11:00 AM - 11:00 PM</li>
+                <li><span>Sunday:</span> 12:00 PM - 9:00 PM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2023 Desi-Flame Restaurant. All Rights Reserved. | Designed
+            by Rabisha & Qaria
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Invoice Modal -->
+    <div class="modal fade" id="invoiceModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content invoice-landscape">
+          <div class="modal-body">
+            <div class="row">
+              <!-- Left Side: Customer & Order Details -->
+              <div class="col-md-5 pe-4 border-end">
+                <h4 class="text-gold mb-3">Order Invoice</h4>
+                <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+                <p><strong>Name:</strong> <span id="user-name"></span></p>
+                <p><strong>Phone:</strong> <span id="user-phone"></span></p>
+                <p><strong>Address:</strong> <span id="user-address"></span></p>
+                <p><strong>Email:</strong> <span id="user-email"></span></p>
+              </div>
+
+              <!-- Right Side: Items & Totals -->
+              <div class="col-md-7 ps-4">
+                <table class="table table-sm table-dark align-middle mb-3">
+                  <thead class="text-gold">
+                    <tr>
+                      <th>Item</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="invoice-items"></tbody>
+                </table>
+
+                <div class="totals mt-4 pt-3 border-top">
+                  <div class="d-flex justify-content-between">
+                    <span>Subtotal:</span>
+                    <span id="invoice-subtotal">Rs.0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span>Discount:</span>
+                    <span id="invoice-discount">Rs.0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span>Tax:</span>
+                    <span id="invoice-tax">Rs.0.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span>Delivery:</span>
+                    <span id="invoice-delivery">Rs.0.00</span>
+                  </div>
+                  <hr class="my-2 text-gold" />
+                  <div
+                    class="d-flex justify-content-between fw-bold text-gold fs-5"
+                  >
+                    <span>Grand Total:</span>
+                    <span id="invoice-grandtotal">Rs.0.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <div>
+              <button type="button" class="btn" id="confirm-order">
+                Confirm Order
+              </button>
+              <button type="button" class="btn" id="print-invoice">
+                Print
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Render Cart Items
+      function renderCart() {
+        const container = document.getElementById("cart-items");
+        const emptyMsg = document.getElementById("empty-cart");
+
+        container.innerHTML = "";
+
+        if (cart.length === 0) {
+          emptyMsg.classList.remove("d-none");
+          document.getElementById("subtotal").textContent = "Rs.0";
+          document.getElementById("discount").textContent = "(Rs.0)";
+          document.getElementById("tax").textContent = "Rs.0";
+          document.getElementById("delivery").textContent = "Rs.200";
+          document.getElementById("grand-total").textContent = "Rs.0";
+          return;
+        } else {
+          emptyMsg.classList.add("d-none");
+        }
+
+        cart.forEach((item) => {
+          const price = item.discount_price || item.price;
+
+          const div = document.createElement("div");
+          div.classList.add(
+            "cart-item",
+            "d-flex",
+            "align-items-center",
+            "gap-3"
+          );
+
+          div.innerHTML = `
+        <div class="item-image">
+          <img src="${item.image}" alt="${item.name}">
+        </div>
+        <div class="flex-grow-1">
+          <h6 class="mb-1">${item.name}</h6>
+          <p class=" mb-1">Rs.${price} × ${item.qty}</p>
+          <div class="d-flex align-items-center">
+            <div class="qty-btn-main">
+            <button class="qty-btn decrease" data-id="${item.id}">-</button>
+            <span class="qty-value mx-2" id="qty-${item.id}">${item.qty}</span>
+            <button class="qty-btn increase" data-id="${item.id}">+</button>
+            </div>
+            <button class="remove-btn ms-3" data-id="${item.id}">
+              <img src="/assets/images/icons/bin.png" alt="">
+            </button>
+          </div>
+        </div>
+        <div class="fw-bold">Rs.${price * item.qty}</div>
+      `;
+
+          container.appendChild(div);
+        });
+
+        // 👉 Call update bill summary after rendering items
+        updateBillDetails();
+      }
+
+      // Update Bill Details
+      function updateBillDetails() {
+        let subtotal = cart.reduce(
+          (acc, item) => acc + (item.discount_price || item.price) * item.qty,
+          0
+        );
+
+        let discount = subtotal > 1000 ? 0.1 * subtotal : 0; // 10% discount if subtotal > 1000
+        let tax = 0.15 * (subtotal - discount);
+        let delivery = 200;
+        let grandTotal = subtotal - discount + tax + delivery;
+
+        document.getElementById(
+          "subtotal"
+        ).textContent = `Rs.${subtotal.toFixed(2)}`;
+        document.getElementById(
+          "discount"
+        ).textContent = `(Rs.${discount.toFixed(2)})`;
+        document.getElementById("tax").textContent = `Rs.${tax.toFixed(2)}`;
+        document.getElementById("delivery").textContent = `Rs.${delivery}`;
+        document.getElementById(
+          "grand-total"
+        ).textContent = `Rs.${grandTotal.toFixed(2)}`;
+      }
+
+      // Handle Cart Actions
+      document.addEventListener("click", (e) => {
+        // Increase Qty
+        if (e.target.classList.contains("increase")) {
+          const id = parseInt(e.target.dataset.id);
+          const item = cart.find((x) => x.id === id);
+          item.qty++;
+          saveCart();
+          renderCart();
+        }
+
+        // Decrease Qty
+        if (e.target.classList.contains("decrease")) {
+          const id = parseInt(e.target.dataset.id);
+          const item = cart.find((x) => x.id === id);
+          if (item.qty > 1) {
+            item.qty--;
+          } else {
+            cart = cart.filter((x) => x.id !== id);
+          }
+          saveCart();
+          renderCart();
+        }
+
+        // Remove Item (using closest to also catch image clicks)
+        const removeBtn = e.target.closest(".remove-btn");
+        if (removeBtn) {
+          const id = parseInt(removeBtn.dataset.id);
+          cart = cart.filter((x) => x.id !== id);
+          saveCart();
+          renderCart();
+        }
+      });
+
+      // Init
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCart();
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="js/cart.js"></script>
+  </body>
+</html>

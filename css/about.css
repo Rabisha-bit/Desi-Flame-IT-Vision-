@@ -1,0 +1,224 @@
+:root {
+  --deep-red: #b22222;
+  --flame-orange: #ca5c08f8;
+  --gold: #d4bc40;
+  --gradient: linear-gradient(
+    to right,
+    var(--flame-orange),
+    var(--gold),
+    var(--deep-red)
+  );
+  --matte-black: #101c1c;
+  --body-font: "Inter", Arial, sans-serif;
+  --heading-font: "Montserrat", sans-serif;
+  --white: white;
+}
+
+body {
+  background-color: var(--matte-black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif !important;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Banner */
+.hero-banner {
+  background: url("/assets/images/TandooriPlatter.jpg") center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+}
+.hero-banner .content {
+  position: relative;
+  z-index: 2;
+}
+.hero-banner h1 {
+  font-size: 3rem;
+  color: var(--flame-orange);
+}
+.hero-banner p {
+  font-size: 1.2rem;
+  color: var(--light-text);
+}
+
+/* Section Styling */
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.section h2 {
+  color: var(--flame-orange);
+  margin-bottom: 20px;
+}
+.section p {
+  color: var(--light-text);
+}
+
+/* Story Section */
+.story-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+.story-image {
+  flex: 1;
+}
+.story-image img {
+  width: 100%;
+  border: 3px solid var(--flame-orange);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(202, 92, 8, 0.3);
+}
+.story-content {
+  flex: 1;
+}
+
+/* Values Section */
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.value-card {
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+.value-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+}
+.value-card i {
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+.value-card h4 {
+  color: var(--flame-orange);
+  margin-bottom: 10px;
+}
+
+/* Chef Section */
+.chef-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+.chef-image {
+  flex: 1;
+}
+.chef-image img {
+  width: 100%;
+}
+.chef-content {
+  flex: 1;
+}
+.chef-content h2 {
+  color: var(--flame-orange);
+}
+.chef-philosophy {
+  font-style: italic;
+  color: var(--gold);
+  border-left: 3px solid var(--flame-orange);
+  padding-left: 20px;
+  margin-top: 15px;
+}
+.chef-signature {
+  text-align: right;
+  margin-top: 20px;
+  color: var(--light-text);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 60px;
+  border-radius: 20px;
+}
+.testimonial-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.testimonial {
+  background: #222;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: transform 0.3s, border 0.3s;
+}
+.testimonial:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 15px;
+}
+.testimonial .author {
+  font-weight: bold;
+  color: var(--flame-orange);
+}
+
+/* Call to Action */
+.cta {
+  text-align: center;
+  padding: 60px 20px;
+}
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--flame-orange);
+}
+.cta .btn {
+  padding: 12px 30px;
+  background: var(--flame-orange);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: 0.3s;
+  text-decoration: none;
+}
+.cta .btn:hover {
+  background: var(--gold);
+  color: #111;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .story-section, .chef-section {
+    flex-direction: column;
+  }
+  .hero-banner h1 {
+    font-size: 2.2rem;
+  }
+  .hero-banner p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 576px) {
+  .section {
+    padding: 50px 15px;
+  }
+  .cta h2 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MENU | Desi-Flame Restaurant</title>
+    <link
+      rel="shortcut icon"
+      href="assets/images/logo/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/preloader.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="preloader-content">
+        <img src="assets/images/icons/Firewood.gif" alt="Preloader" />
+        <h2>Desi-Flame</h2>
+        <p>Authentic Flavors Loading...</p>
+      </div>
+    </div>
+
+     <!-- NAVBAR -->
+    <nav class="nav-container">
+      <div class="container-fluid" id="navbar">
+        <div class="logo p-4">
+          <a href="index.html">
+            <img
+              src="./assets//images/logo/logo.png"
+              alt="logo"
+              height="30px"
+              width="30px"
+            />
+          </a>
+          <a href="index.html">
+            <p>DesiFlame</p>
+          </a>
+        </div>
+        <div class="navtabs">
+          <div class="li-nks d-flex gap-4">
+            <a href="index.html">Home</a>
+            <a href="/menu.html">Menu</a>
+            <a href="index.html#highlights">Food Categories</a>
+            <a href="index.html#recommended">Chef Recommendations</a>
+            <a href="index.html#featured">Featured Dishes</a>
+            <a href="/about.html">About Us</a>
+            <a href="index.html#reservation">Reservation</a>
+          </div>
+        </div>
+        <div class="nav-icons">
+          <!-- Navbar User Icon -->
+<!-- 
+          <a href="javascript:void(0)" id="userIcon" class="me-1">
+            <img
+              src="./assets/images/icons/user.png"
+              alt="User"
+              style="cursor: pointer; width: 28px"
+            />
+          </a> -->
+          <a href="cart.html" class="me-3 cart-link position-relative">
+            <img src="./assets/images/icons/basket.png" alt="Cart" />
+            <span
+              id="cart-count"
+              class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+            >
+              0
+            </span>
+          </a>
+        </div>
+        <div class="hamburger-menu">
+          <img
+            src="assets/images/icons/menu.png"
+            onclick="togglesidebar()"
+            class="pointer"
+            alt="menu"
+          />
+        </div>
+      </div>
+      <div class="side-bar" id="side-bar">
+        <div class="sidebar-head">
+          <div class="close-button">
+            <img
+              src="assets/images/icons/cross.png"
+              onclick="togglesidebar()"
+              class="pointer"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="sidebar-links">
+          <a href="index.html">Home</a>
+          <a href="/menu.html">Our Menu</a>
+          <a href="index.html#highlights">Food Categores</a>
+          <a href="index.html#recommended">Chef Recommendations</a>
+          <a href="index.html#featured">Featured Dishes</a>
+          <a href="/about.html">About Us</a>
+          <a href="index.html#testimonials">Testimonials</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ---category/menu section--- -->
+    <section class="menu-section" id="menu">
+      <div class="container-fluid">
+        <div class="menu-heading">
+          <div class="menu-subtitle">SPECIAL FINE DINE</div>
+          <div class="menu-heading-icon">
+            <span class="menu-heading-star">&#10022;</span>
+          </div>
+          <h2 class="menu-title">Delicious Menu</h2>
+        </div>
+
+        <!-- Dynamic Categories -->
+        <div class="menu-categories" id="menuCategories">
+          <!-- Categories JS se inject hongi -->
+        </div>
+
+        <!-- Dynamic Dishes -->
+        <div class="menu-list" id="menuList">
+          <!-- Dishes JS se inject hongi -->
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="footer-logo">
+              <h3>DesiFlame</h3>
+            </div>
+            <p>
+              Experience the authentic taste of traditional flame-grilled
+              cuisine.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="footer-hours">
+              <h4>Opening Hours</h4>
+              <ul>
+                <li><span>Monday - Thursday:</span> 11:00 AM - 10:00 PM</li>
+                <li><span>Friday - Saturday:</span> 11:00 AM - 11:00 PM</li>
+                <li><span>Sunday:</span> 12:00 PM - 9:00 PM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2023 Desi-Flame Restaurant. All Rights Reserved. | Designed
+            by Rabisha Nadeem
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Step 1: Fetch JSON file
+      async function fetchDishes() {
+        try {
+          const response = await fetch("/assets/data/dishes.json"); // apne path k hisaab se
+          const data = await response.json();
+          return data.dishes;
+        } catch (error) {
+          console.error("Error loading dishes.json:", error);
+        }
+      }
+
+      // Step 2: Render Categories
+      function renderCategories(dishes) {
+        const categories = [...new Set(dishes.map((d) => d.category))]; // unique categories
+        const categoryContainer = document.getElementById("menuCategories");
+
+        categoryContainer.innerHTML = categories
+          .map(
+            (cat, index) =>
+              `<button class="menu-cat ${
+                index === 0 ? "active" : ""
+              }" data-category="${cat}">
+             ${cat.charAt(0).toUpperCase() + cat.slice(1)}
+           </button>
+           ${
+             index < categories.length - 1
+               ? '<span class="menu-separator">★</span>'
+               : ""
+           }`
+          )
+          .join("");
+
+        // Add event listeners for filter
+        document.querySelectorAll(".menu-cat").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document
+              .querySelectorAll(".menu-cat")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderDishes(dishes, btn.dataset.category);
+          });
+        });
+      }
+
+      // Step 3: Render Dishes
+      function renderDishes(dishes, category) {
+        const dishContainer = document.getElementById("menuList");
+        const filtered = dishes.filter((d) => d.category === category);
+        dishContainer.innerHTML = filtered
+        .map(
+          (dish) => `
+          
+        <div class="menu-item">
+          <img src="${dish.image}" alt="${dish.name}" class="menu-img" />
+          <div class="menu-info">
+            <div class="menu-header">
+              <span class="menu-name">${dish.name}</span>
+              <span class="menu-dots"></span>
+              <span class="menu-price">Rs.${dish.price}</span>
+            </div>
+            <div class="menu-desc">${dish.description}</div>
+          </div>
+        </div>
+      `
+          )
+          .join("");
+      }
+
+      // Step 4: Init
+      fetchDishes().then((dishes) => {
+        renderCategories(dishes);
+        if (dishes.length > 0) {
+          renderDishes(dishes, dishes[0].category); // default pehli category
+        }
+      });
+    </script>
+
+    <script src="js/aiwater.js"></script>
+    <script src="js/main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
